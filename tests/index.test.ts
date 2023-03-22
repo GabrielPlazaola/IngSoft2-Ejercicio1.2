@@ -1,18 +1,15 @@
-import { Piso, Ascensor, Pisofinal, Pisonulo } from '../src/index';
+import { Piso, Ascensor } from '../src/index';
 
-var pisofinal1 = new Pisofinal("Piso Final", pisofinal1);
-var plantabaja = new Piso("Planta Baja", pisofinal1);
-var piso1 = new Piso("Piso 1", pisofinal1);
-var piso2 = new Piso("Piso 2", pisofinal1);
-var piso3 = new Piso("Piso 3", pisofinal1);
-var piso4 = new Piso("Piso 4", pisofinal1);
-var piso5 = new Piso("Piso 5", pisofinal1);
-var pisonulo = new Pisonulo("pisonulo1", pisofinal1);
+var plantabaja = new Piso("Planta Baja");
+var piso1 = new Piso("Piso 1");
+var piso2 = new Piso("Piso 2");
+var piso3 = new Piso("Piso 3");
+var piso4 = new Piso("Piso 4");
+var piso5 = new Piso("Piso 5");
 var ascensor1 = new Ascensor(plantabaja);
 var ascensor2 = new Ascensor(plantabaja);
 var ascensor3 = new Ascensor(plantabaja);
 var ascensor4 = new Ascensor(plantabaja);
-plantabaja.pisoanterior = pisonulo;
 plantabaja.pisosiguiente = piso1;
 piso1.pisoanterior = plantabaja;
 piso1.pisosiguiente = piso2;
@@ -23,7 +20,6 @@ piso3.pisosiguiente = piso4;
 piso4.pisoanterior = piso3;
 piso4.pisosiguiente = piso5;
 piso5.pisoanterior = piso4;
-piso5.pisosiguiente = pisonulo;
 
 describe('testing index file', () => {
   test('subir al piso 3', () => {
