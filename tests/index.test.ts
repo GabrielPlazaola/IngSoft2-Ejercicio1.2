@@ -31,7 +31,7 @@ describe('testing index file', () => {
 });
 
 describe('testing index file', () => {
-  test('subir al piso 3', () => {
+  test('subir al piso 5', () => {
     ascensor2.ira(piso5);
     
     expect(ascensor2.mostrarhistorial()).toEqual( ["Planta Baja","Piso 1","Piso 2","Piso 3","Piso 4","Piso 5"] );
@@ -40,7 +40,7 @@ describe('testing index file', () => {
 });
 
 describe('testing index file', () => {
-  test('subir al piso 3', () => {
+  test('piso 3 -> piso3 -> piso2 -> piso2', () => {
     ascensor3.ira(piso3);
     ascensor3.ira(piso3);
     ascensor3.ira(piso2);
@@ -52,7 +52,7 @@ describe('testing index file', () => {
 });
 
 describe('testing index file', () => {
-  test('subir al piso 3', () => {
+  test('piso 5 -> piso4', () => {
     ascensor4.ira(piso5);
     ascensor4.ira(piso4);
     
