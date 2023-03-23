@@ -2,34 +2,6 @@ export class Piso{
     nombre: string;
     pisoanterior: Piso;
     pisosiguiente: Piso;
-    subir(destino: Piso, lista: Array<string>, ascensor:Ascensor){
-        lista.push(this.nombre);
-        if (this != destino){
-            try{
-                return this.pisosiguiente.subir(destino, lista, ascensor)
-            }
-            catch{
-                lista.length = 0;
-            }
-        }
-        else{
-            lista.shift();
-        }
-    }
-    bajar(destino: Piso, lista: Array<string>, ascensor:Ascensor){
-        lista.push(this.nombre);
-        if (this != destino){
-            try{
-                return this.pisoanterior.bajar(destino, lista, ascensor)
-            }
-            catch{
-                lista.length = 0;
-            }
-        }
-        else{
-            lista.shift();
-        }
-    }
     constructor(nom: string){
         this.nombre = nom;
     }
@@ -50,11 +22,41 @@ export class Ascensor{
     ira(pisoelegido: Piso){
         var listasubir: Array<string> = [];
         var listabajar: Array<string> = [];
-        this.pisoactual.subir(pisoelegido, listasubir, this);
-        this.pisoactual.bajar(pisoelegido, listabajar, this);
+        this.subir(pisoelegido, listasubir, this.pisoactual);
+        this.bajar(pisoelegido, listabajar, this.pisoactual);
+        console.log(listasubir);
+        console.log(listabajar);
         this.historial = this.historial.concat(listasubir);
         this.historial = this.historial.concat(listabajar);
         this.pisoactual = pisoelegido;
+    }
+    subir(destino: Piso, lista: Array<string>, estepiso:Piso){
+        lista.push(estepiso.nombre);
+        if (estepiso != destino){
+            try{
+                return this.subir(destino, lista, estepiso.pisosiguiente)
+            }
+            catch{
+                lista.length = 0;
+            }
+        }
+        else{
+            lista.shift();
+        }
+    }
+    bajar(destino: Piso, lista: Array<string>, estepiso:Piso){
+        lista.push(estepiso.nombre);
+        if (estepiso != destino){
+            try{
+                return this.bajar(destino, lista, estepiso.pisoanterior)
+            }
+            catch{
+                lista.length = 0;
+            }
+        }
+        else{
+            lista.shift();
+        }
     }
     constructor(pisocomienzo: Piso){
         this.pisoactual = pisocomienzo;
